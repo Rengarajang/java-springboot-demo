@@ -5,13 +5,15 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                cd complete/
-                mvn install"""
+                cd ${WORKSPACE}/complete/
+                mvn install -DskipTests"""
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh """
+                cd ${WORKSPACE}/complete/
+                mvn compile test"""
             }
         }
         stage('Sonar') {

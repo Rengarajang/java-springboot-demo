@@ -14,6 +14,16 @@ pipeline {
                 echo 'Testing..'
             }
         }
+
+        stage('Sonar') {
+            steps {
+                sh """
+                cd ${WORKSPACE}/complete/
+                mvn sonar:sonar
+                """
+            }
+        }
+        
         stage('Deploy') {
             steps {
                 echo 'Deploying....'

@@ -9,7 +9,7 @@ pipeline {
                 mvn install -DskipTests"""
             }
         }
-        stage('Test') {
+  /**      stage('Test') {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
@@ -23,10 +23,14 @@ pipeline {
                 mvn sonar:sonar
                 """
             }
-        }        
+        }    **/    
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+               sshagent (credentials:['hostssh']) {
+	        sh '''
+				    ssh -o StrictHostKeyChecking=no rengs@192.168.1.3 "docker ps"
+	            '''
+                }
             }
         }
     }

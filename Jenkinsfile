@@ -6,7 +6,9 @@ pipeline {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
-                mvn install -DskipTests"""
+                mvn install -DskipTests
+		docker build -t ci-demo-app .
+		"""
             }
         }
   /**      stage('Test') {
@@ -28,7 +30,7 @@ pipeline {
             steps {
                sshagent (credentials:['hostssh']) {
 	        sh '''
-				    ssh -o StrictHostKeyChecking=no rengs@192.168.1.3 "docker ps"
+				    ssh -o StrictHostKeyChecking=no rengs@192.168.1.3 "docker run -d -p 9099:8080 ci-demo-app"
 	            '''
                 }
             }

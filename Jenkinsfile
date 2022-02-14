@@ -1,7 +1,9 @@
 pipeline {
+	environment {	
 registry = "rengarajang/ci-demo-app"
 registryCredential = 'dockerhub_id'
 dockerImage = ''
+	}	
   agent any
 
     stages {

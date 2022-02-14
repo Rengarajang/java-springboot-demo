@@ -33,6 +33,7 @@ dockerImage = ''
 	stage('Building our image') {
 	    steps{
                 script {
+		cd ${WORKSPACE}/complete/
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                  }
              }

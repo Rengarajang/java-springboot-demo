@@ -12,6 +12,7 @@ dockerImage = ''
                 sh """
                 cd ${WORKSPACE}/complete/
                 mvn install -DskipTests
+		cp target/java-springboot-demo-1.0.0.jar /tmp/
 		"""
             }
         }

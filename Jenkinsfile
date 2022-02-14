@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+registry = "rengarajang/ci-demo-app"
+registryCredential = 'dockerhub_id'
+dockerImage = ''
+  agent any
 
     stages {
         stage('Build') {
@@ -7,7 +10,6 @@ pipeline {
                 sh """
                 cd ${WORKSPACE}/complete/
                 mvn install -DskipTests
-		docker build -t ci-demo-app .
 		"""
             }
         }
@@ -25,7 +27,15 @@ pipeline {
                 mvn sonar:sonar
                 """
             }
-        }    **/    
+        }    **/  
+	stage('Building our image') {
+	    steps{
+                script {
+		cd ${WORKSPACE}/complete/	
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                 }
+             }
+         }    
         stage('Deploy') {
             steps {
                sshagent (credentials:['hostssh']) {

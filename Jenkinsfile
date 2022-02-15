@@ -16,7 +16,7 @@ dockerImage = ''
 		"""
             }
         }
-  /**      stage('Test') {
+        stage('Test') {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
@@ -30,7 +30,7 @@ dockerImage = ''
                 mvn sonar:sonar
                 """
             }
-        }    **/  
+        }    
 	stage('Building image') {
 	    steps{
                 script {

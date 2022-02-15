@@ -66,7 +66,7 @@ dockerImage = ''
 
 		"""
             }
-		    
+	  }	    
     }
 	
     post {

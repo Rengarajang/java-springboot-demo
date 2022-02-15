@@ -55,7 +55,6 @@ dockerImage = ''
 	      steps {
 		      bat """
 		      hostname
-		      docker rm -f `docker ps |grep demo |awk '{print $1}'`
 		      docker run -d -p 9099:8080 rengarajang/ci-demo-app:${BUILD_NUMBER}
                     """
                 }

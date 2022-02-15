@@ -23,14 +23,14 @@ dockerImage = ''
                 mvn compile test"""
             }
         }
-       /* stage('Sonar') {
+       stage('Sonar') {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
                 mvn sonar:sonar
                 """
             }
-        }   */ 
+        }  
 	stage('Building image') {
 	    steps{
                 script {
@@ -55,10 +55,12 @@ dockerImage = ''
 	      steps {
 		      bat """
 		      hostname
+		      docker rm -f `docker ps |grep demo |awk '{print $1}'`
 		      docker run -d -p 9099:8080 rengarajang/ci-demo-app:${BUILD_NUMBER}
                     """
                 }
             }
+		    
     }
 	
     post {

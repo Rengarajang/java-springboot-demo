@@ -23,14 +23,14 @@ dockerImage = ''
                 mvn compile test"""
             }
         }
-        stage('Sonar') {
+       /* stage('Sonar') {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
                 mvn sonar:sonar
                 """
             }
-        }    
+        }   */ 
 	stage('Building image') {
 	    steps{
                 script {

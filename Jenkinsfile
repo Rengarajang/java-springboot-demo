@@ -62,7 +62,7 @@ dockerImage = ''
 	    stage('PerfTest') {
 		steps {
                 	sh """
-                    /usr/local/apache-jmeter-5.4.3/bin/jmeter -n -t jplan.jmx.jmx -l ci-demo.jtl -j ci-demo.logs	
+                    /usr/local/apache-jmeter-5.4.3/bin/jmeter -n -t jplan-cidemo.jmx -l ci-demo.jtl -j ci-demo.logs	
 
 		"""
             }

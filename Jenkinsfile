@@ -47,14 +47,15 @@ dockerImage = ''
 	 }
 	}
 }
-      /*  stage('Deploy') {
-            steps {
-               sshagent (credentials:['hostssh']) {
-	        sh '''
-				    ssh -o StrictHostKeyChecking=no rengs@192.168.1.3 "docker run -d -p 9099:8080 ci-demo-app"
-	            '''
+	    
+      stage('Deploy') {
+        agent {
+                label 'windows'
+            }     
+	      steps {
+		      bat "hostname"
+               
                 }
             }
-        } */
     }
 }

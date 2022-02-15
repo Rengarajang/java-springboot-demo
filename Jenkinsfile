@@ -63,7 +63,7 @@ dockerImage = ''
 	
     post {
 	    always {
-            junit '${WORKSPACE}/complete/target/surefire-reports/TEST-*.xml'
+            junit 'complete/target/surefire-reports/TEST-*.xml'
         }
     }	
 }

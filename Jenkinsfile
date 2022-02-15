@@ -16,7 +16,7 @@ dockerImage = ''
 		"""
             }
         }
-        stage('Test') {
+     /*   stage('Test') {
             steps {
                 sh """
                 cd ${WORKSPACE}/complete/
@@ -30,7 +30,7 @@ dockerImage = ''
                 mvn sonar:sonar
                 """
             }
-        }  
+        }  */
 	stage('Building image') {
 	    steps{
                 script {
@@ -58,6 +58,13 @@ dockerImage = ''
 		      docker run -d -p 9099:8080 rengarajang/ci-demo-app:${BUILD_NUMBER}
                     """
                 }
+            }
+	    stage('PerfTest') {
+		steps {
+                	sh """
+                    /usr/local/apache-jmeter-5.4.3/bin/jmeter -n -t jplan.jmx.jmx -l ci-demo.jtl -j ci-demo.logs	
+
+		"""
             }
 		    
     }

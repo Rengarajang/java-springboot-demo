@@ -31,14 +31,14 @@ dockerImage = ''
                 """
             }
         }    **/  
-	stage('Building our image') {
+	stage('Building image') {
 	    steps{
                 script {
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                  }
              }
          }
-	stage('Deploy our image') {
+	stage('Publish image') {
 	    steps{
 	      script {
 	      docker.withRegistry( '', registryCredential ) {
@@ -53,8 +53,10 @@ dockerImage = ''
                 label 'windows'
             }     
 	      steps {
-		      bat "hostname"
-               
+		      bat """
+		      hostname
+		      docker run -d -p 9099:8080 rengarajang/ci-demo-app:${BUILD_NUMBER}
+                    """
                 }
             }
     }

@@ -19,3 +19,8 @@ $ curl -X POST localhost:8080/actuator/shutdown
 Because we didn’t enable it, the request is blocked by the virtue of not existing.
 
 For more details about each of these REST points and how you can tune their settings with an application.properties file (in src/main/resources), you can read detailed docs about the endpoints.
+to fix Sonarqube docker contianer frequent reboot run below commands in host machine 
+# only for the current session
+**sudo sysctl -w vm.max_map_count=262144**
+#permanently
+**sudo sh -c "echo vm.max_map_count=262144 >> /etc/sysctl.conf"**
